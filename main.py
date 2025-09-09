@@ -1,45 +1,8 @@
 import argparse
-from abc import ABC, abstractmethod
-
-class LLMBase(ABC):
-    @abstractmethod
-    def run(self, question: str) -> str:
-        pass
-
-class OllamaLLM(LLMBase):
-    def __init__(self):
-        from langchain_community.llms import Ollama
-        from langchain.prompts import PromptTemplate
-        from langchain.chains import LLMChain
-        self.llm = Ollama(model="llama3")
-        template = """You are an expert assistant.\nQuestion: {question}\nAnswer:"""
-        prompt = PromptTemplate(template=template, input_variables=["question"])
-        self.chain = LLMChain(prompt=prompt, llm=self.llm)
-
-    def run(self, question: str) -> str:
-        return self.chain.run(question=question)
-
-class LocalLLM(LLMBase):
-    def __init__(self):
-        from langchain_huggingface import HuggingFacePipeline
-        self.llm = HuggingFacePipeline.from_model_id(
-            model_id="meta-llama/Llama-3.2-3B-Instruct",
-        task="text-generation",
-        pipeline_kwargs={"max_new_tokens": 100})
-
-    def run(self, question: str) -> str:
-        prompt = f"You are an expert assistant.\nQuestion: {question}\nAnswer:"
-        result = self.llm.run(question=question)
-        return result[0]["generated_text"]
-
-class OpenAPILLM(LLMBase):
-    def __init__(self):
-        # Placeholder: Replace with actual OpenAPI client initialization
-        pass
-
-    def run(self, question: str) -> str:
-        # Placeholder: Replace with actual OpenAPI call
-        return "OpenAPI model response (not implemented)"
+from llm_base import LLMBase
+from ollama_llm import OllamaLLM
+from local_llm import LocalLLM
+from openapi_llm import OpenAPILLM
 
 class LLMFactory:
     @staticmethod

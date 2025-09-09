@@ -8,6 +8,7 @@ langchain = "*"
 langchain-community = "*"
 langchain_huggingface = "*"
 requests = "*"
+transformers = "*"
 
 [dev-packages]
 
