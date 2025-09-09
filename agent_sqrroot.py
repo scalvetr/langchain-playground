@@ -16,4 +16,4 @@ class AgentSqrRoot(Example):
 
     def run(self, input: str) -> str:
         messages = self.agent.invoke({"messages": [("human", f"What is the square root of {input}?")]})
-        return messages[-1]
+        return messages['messages'][-1].content
