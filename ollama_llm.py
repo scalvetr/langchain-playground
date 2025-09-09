@@ -1,7 +1,9 @@
+import configparser
+
 from llm_base import LLMBase
 
 class OllamaLLM(LLMBase):
-    def __init__(self):
+    def __init__(self, config: configparser.ConfigParser):
         from langchain_community.llms import Ollama
         from langchain.prompts import PromptTemplate
         from langchain.chains import LLMChain

@@ -9,6 +9,7 @@ langchain-community = "*"
 langchain_huggingface = "*"
 requests = "*"
 transformers = "*"
+openai = "*"
 
 [dev-packages]
 
