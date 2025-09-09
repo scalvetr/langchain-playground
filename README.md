@@ -21,6 +21,7 @@ pipenv install
 ```
 Run the program
 ```shell
-pipenv run python main.py
+pipenv run python main.py --llm ollama
+pipenv run python main.py --llm local
 
 ```
