@@ -10,6 +10,7 @@ langchain_huggingface = "*"
 requests = "*"
 transformers = "*"
 openai = "*"
+langgraph = "0.2.74"
 
 [dev-packages]
 

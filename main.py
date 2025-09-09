@@ -20,11 +20,11 @@ class LLMFactory:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--llm", choices=["ollama", "local", "openai"], required=True)
-    parser.add_argument("--question", type=str, required=True)
+    parser.add_argument("--prompt", type=str, required=True)
     args = parser.parse_args()
 
     config = configparser.ConfigParser()
     config.read('config.ini')
     llm = LLMFactory.get_llm(args.llm, config)
-    response = llm.run(args.question)
+    response = llm.run(args.prompt)
     print(f"{args.llm.capitalize()} model:", response)
