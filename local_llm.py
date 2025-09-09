@@ -1,8 +1,8 @@
 import configparser
 
-from llm_base import LLMBase
+from example import Example
 
-class LocalLLM(LLMBase):
+class LocalLLM(Example):
     def __init__(self, config: configparser.ConfigParser):
         from huggingface_hub import login
         login(token=config["HUGGINGFACE"]["API_KEY"], add_to_git_credential=False)
@@ -12,8 +12,8 @@ class LocalLLM(LLMBase):
         task="text-generation",
         pipeline_kwargs={"max_new_tokens": 100})
 
-    def run(self, question: str) -> str:
-        prompt = f"You are an expert assistant.\nQuestion: {question}\nAnswer:"
-        result = self.llm.run(question=question)
+    def run(self, input: str) -> str:
+        prompt = f"You are an expert assistant.\nQuestion: {input}\nAnswer:"
+        result = self.llm.run(question=input)
         return result[0]["generated_text"]
 

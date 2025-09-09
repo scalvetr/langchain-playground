@@ -6,7 +6,7 @@ from langchain_core.prompts import PromptTemplate
 
 from example import Example
 
-class OpenAILLM(Example):
+class Agent(Example):
     def __init__(self, config: configparser.ConfigParser):
         destination_prompt = PromptTemplate(
             input_variables=["destination"],

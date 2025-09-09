@@ -1,8 +1,8 @@
 import configparser
 
-from llm_base import LLMBase
+from example import Example
 
-class OllamaLLM(LLMBase):
+class OllamaLLM(Example):
     def __init__(self, config: configparser.ConfigParser):
         from langchain_community.llms import Ollama
         from langchain.prompts import PromptTemplate
@@ -14,5 +14,5 @@ Answer:"""
         prompt = PromptTemplate(template=template, input_variables=["question"])
         self.chain = LLMChain(prompt=prompt, llm=self.llm)
 
-    def run(self, question: str) -> str:
-        return self.chain.run(question=question)
+    def run(self, input: str) -> str:
+        return self.chain.run(question=input)

@@ -1,30 +1,33 @@
 import argparse
 import configparser
-from llm_base import LLMBase
+from example import Example
 from ollama_llm import OllamaLLM
 from local_llm import LocalLLM
 from openai_llm import OpenAILLM
+from agent import Agent
 
-class LLMFactory:
+class ExampleFactory:
     @staticmethod
-    def get_llm(llm_type: str, config: configparser.ConfigParser) -> LLMBase:
-        if llm_type == "ollama":
+    def get_example(example: str, config: configparser.ConfigParser) -> Example:
+        if example == "ollama":
             return OllamaLLM(config)
-        elif llm_type == "local":
+        elif example == "local":
             return LocalLLM(config)
-        elif llm_type == "openai":
+        elif example == "openai":
             return OpenAILLM(config)
+        elif example == "agent":
+            return Agent(config)
         else:
-            raise ValueError(f"Unknown llm type: {llm_type}")
+            raise ValueError(f"Unknown example: {example}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--llm", choices=["ollama", "local", "openai"], required=True)
-    parser.add_argument("--prompt", type=str, required=True)
+    parser.add_argument("--example", choices=["ollama", "local", "openai", "agent"], required=True)
+    parser.add_argument("--input", type=str, required=True)
     args = parser.parse_args()
 
     config = configparser.ConfigParser()
     config.read('config.ini')
-    llm = LLMFactory.get_llm(args.llm, config)
-    response = llm.run(args.prompt)
-    print(f"{args.llm.capitalize()} model:", response)
+    example = ExampleFactory.get_example(args.example, config)
+    response = example.run(args.input)
+    print(f"{args.example.capitalize()} example:", response)

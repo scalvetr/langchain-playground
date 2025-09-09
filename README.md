@@ -31,8 +31,9 @@ pipenv install
 
 Run the program
 ```shell
-pipenv run python main.py --llm ollama --prompt "Explain what AI is?"
-pipenv run python main.py --llm local --prompt "Explain what AI is?"
-pipenv run python main.py --llm openai --prompt "Rome"
+pipenv run python main.py --example ollama --input "Explain what AI is?"
+pipenv run python main.py --example local --input "Explain what AI is?"
+pipenv run python main.py --example openai --input "Rome"
+pipenv run python main.py --example agent --input "Rome"
 
 ```
