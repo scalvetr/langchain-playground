@@ -4,7 +4,7 @@ from example import Example
 from ollama_llm import OllamaLLM
 from local_llm import LocalLLM
 from openai_llm import OpenAILLM
-from agent import Agent
+from agent_sqrroot import AgentSqrRoot
 
 class ExampleFactory:
     @staticmethod
@@ -15,14 +15,14 @@ class ExampleFactory:
             return LocalLLM(config)
         elif example == "openai":
             return OpenAILLM(config)
-        elif example == "agent":
-            return Agent(config)
+        elif example == "agent_sqrroot":
+            return AgentSqrRoot(config)
         else:
             raise ValueError(f"Unknown example: {example}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--example", choices=["ollama", "local", "openai", "agent"], required=True)
+    parser.add_argument("--example", choices=["ollama", "local", "openai", "agent_sqrroot"], required=True)
     parser.add_argument("--input", type=str, required=True)
     args = parser.parse_args()
 

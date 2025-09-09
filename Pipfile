@@ -11,6 +11,7 @@ requests = "*"
 transformers = "*"
 openai = "*"
 langgraph = "0.2.74"
+numexpr = "*"
 
 [dev-packages]
 

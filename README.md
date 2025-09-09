@@ -34,6 +34,6 @@ Run the program
 pipenv run python main.py --example ollama --input "Explain what AI is?"
 pipenv run python main.py --example local --input "Explain what AI is?"
 pipenv run python main.py --example openai --input "Rome"
-pipenv run python main.py --example agent --input "Rome"
+pipenv run python main.py --example agent_sqrroot --input "101"
 
 ```
