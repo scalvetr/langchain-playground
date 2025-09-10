@@ -5,7 +5,7 @@ from example import Example
 class LocalLLM(Example):
     def __init__(self, config: configparser.ConfigParser):
         from huggingface_hub import login
-        login(token=config["HUGGINGFACE"]["API_KEY"], add_to_git_credential=False)
+        login(token=config["HuggingFace"]["API_KEY"], add_to_git_credential=False)
         from langchain_huggingface import HuggingFacePipeline
         self.llm = HuggingFacePipeline.from_model_id(
             model_id="meta-llama/Llama-3.2-1B",
