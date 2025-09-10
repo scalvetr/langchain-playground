@@ -4,6 +4,7 @@ import os
 from langchain.chains.summarize.map_reduce_prompt import prompt_template
 from langchain_community.chat_models import ChatOpenAI
 from langchain_community.document_loaders import UnstructuredHTMLLoader
+from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -55,7 +56,9 @@ class RAGWithOpenAILLM(Example):
         self.rag_chain = (
                 {"retriever": self.retriever, "input": RunnablePassthrough()}
                 | self.prompt_template
-                | llm)
+                | llm
+                | StrOutputParser()
+        )
 
     def run(self, input: str) -> str:
         return prompt_template.invoke({"input", input})
