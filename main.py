@@ -7,7 +7,7 @@ from local_llm import LocalLLM
 from ollama_llm import OllamaLLM
 from openai_llm import OpenAILLM
 from rag_with_openai_llm import RAGWithOpenAILLM
-
+from token_splitter_rag_openai import TokenSplitterRAGOpenAI
 
 class ExampleFactory:
     @staticmethod
@@ -22,6 +22,8 @@ class ExampleFactory:
             return AgentSqrRoot(config)
         elif example == "rag_with_openai_llm":
             return RAGWithOpenAILLM(config)
+        elif example == "token_splitter_rag_openai":
+            return TokenSplitterRAGOpenAI(config)
         else:
             raise ValueError(f"Unknown example: {example}")
 
@@ -33,7 +35,8 @@ if __name__ == "__main__":
         "local",
         "openai",
         "agent_sqrroot",
-        "rag_with_openai_llm"
+        "rag_with_openai_llm",
+        "token_splitter_rag_openai"
     ],
                         required=True)
     parser.add_argument("--input", type=str, required=True)

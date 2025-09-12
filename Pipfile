@@ -5,13 +5,17 @@ name = "pypi"
 
 [packages]
 langchain = ">=0.3.27,<0.4"
+langchain-openai = ">=0.3.33,<0.4"
 langchain-ollama = ">=0.3.7,<0.4"
 langchain-huggingface = ">=0.3.1,<0.4"
+langchain-chroma = ">=0.2.6,<0.3"
 requests = ">=2.32.5,<2.33"
 transformers = ">=4.56.1,<4.57"
 openai = ">=1.107.0,<1.108"
 langgraph = ">=0.6.7,<0.7"
 numexpr = ">=2.11.0,<2.12"
+tiktoken = ">=0.11.0,<0.12"
+unstructured = ">=0.18.14,<0.19"
 
 [dev-packages]
 
