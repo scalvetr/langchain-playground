@@ -2,3 +2,4 @@
 /.idea/
 /langchain-playground.iml
 /config.ini
+/chroma.sqlite3
