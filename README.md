@@ -35,5 +35,8 @@ pipenv run python main.py --example ollama --input "Explain what AI is?"
 pipenv run python main.py --example local --input "Explain what AI is?"
 pipenv run python main.py --example openai --input "Rome"
 pipenv run python main.py --example agent_sqrroot --input "101"
+pipenv run python main.py --example rag_character_splitter_openai --input "Explain what AI is?"
+pipenv run python main.py --example rag_semantic_splitter_openai --input "Explain what AI is?"
+pipenv run python main.py --example rag_token_splitter_openai --input "Explain what AI is?"
 
 ```
