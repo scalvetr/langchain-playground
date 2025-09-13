@@ -1,7 +1,6 @@
 import configparser
 import os
 
-import tiktoken
 from langchain.chains.summarize.map_reduce_prompt import prompt_template
 from langchain_chroma import Chroma
 from langchain_community.chat_models import ChatOpenAI
@@ -9,9 +8,8 @@ from langchain_community.document_loaders import UnstructuredHTMLLoader
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
-from langchain_openai import OpenAIEmbeddings
 from langchain_experimental.text_splitter import SemanticChunker
-
+from langchain_openai import OpenAIEmbeddings
 
 from example import Example
 
@@ -31,7 +29,6 @@ class RAGSemanticSplitterOpenAI(Example):
             breakpoint_threshold_amount=0.8)
 
         docs = splitter.split_documents(data)
-
 
         vectorstore = Chroma.from_documents(
             docs,
