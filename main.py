@@ -27,6 +27,8 @@ class ExampleFactory:
             return RAGTokenSplitterOpenAI(config)
         elif example == "rag_semantic_splitter_openai":
             return RAGSemanticSplitterOpenAI(config)
+        elif example == "rag_bm25_retrival_openai":
+            return RAGSemanticSplitterOpenAI(config)
         else:
             raise ValueError(f"Unknown example: {example}")
 
@@ -40,7 +42,8 @@ if __name__ == "__main__":
         "agent_sqrroot",
         "rag_character_splitter_openai",
         "rag_token_splitter_openai",
-        "rag_semantic_splitter_openai"
+        "rag_semantic_splitter_openai",
+        "rag_bm25_retrival_openai"
     ],
                         required=True)
     parser.add_argument("--input", type=str, required=True)
