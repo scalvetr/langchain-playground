@@ -1,7 +1,6 @@
 import configparser
 import os
 
-import tiktoken
 from langchain.chains.summarize.map_reduce_prompt import prompt_template
 from langchain_chroma import Chroma
 from langchain_community.chat_models import ChatOpenAI
@@ -10,24 +9,21 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_openai import OpenAIEmbeddings
-from langchain_text_splitters import TokenTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from example import Example
 
 
-class TokenSplitterRAGOpenAI(Example):
+class RAGCharacterSplitterOpenAI(Example):
     def __init__(self, config: configparser.ConfigParser):
         loader = UnstructuredHTMLLoader("sample_document.html")
         data = loader.load()
 
-        encoding = tiktoken.encoding_for_model("gpt-4o-mini")
-
-        splitter = TokenTextSplitter(
-            encoding_name=encoding.name,
-            chunk_size=10,
-            chunk_overlap=2)
-
-        docs = splitter.split_documents(data)
+        rc_splitter = RecursiveCharacterTextSplitter(
+            chunk_size=100,
+            chunk_overlap=25,
+            separators=["\n\n", "\n", " ", ""])
+        docs = rc_splitter.split_documents(data)
 
         embedding_function = OpenAIEmbeddings(
             api_key=config["OPENAI"]["API_KEY"],

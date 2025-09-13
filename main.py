@@ -6,8 +6,9 @@ from example import Example
 from local_llm import LocalLLM
 from ollama_llm import OllamaLLM
 from openai_llm import OpenAILLM
-from rag_with_openai_llm import RAGWithOpenAILLM
-from token_splitter_rag_openai import TokenSplitterRAGOpenAI
+from rag_character_splitter_openai import RAGCharacterSplitterOpenAI
+from rag_token_splitter_openai import RAGTokenSplitterOpenAI
+from rag_semantic_splitter_openai import RAGSemanticSplitterOpenAI
 
 class ExampleFactory:
     @staticmethod
@@ -20,10 +21,12 @@ class ExampleFactory:
             return OpenAILLM(config)
         elif example == "agent_sqrroot":
             return AgentSqrRoot(config)
-        elif example == "rag_with_openai_llm":
-            return RAGWithOpenAILLM(config)
-        elif example == "token_splitter_rag_openai":
-            return TokenSplitterRAGOpenAI(config)
+        elif example == "rag_character_splitter_openai":
+            return RAGCharacterSplitterOpenAI(config)
+        elif example == "rag_token_splitter_openai":
+            return RAGTokenSplitterOpenAI(config)
+        elif example == "rag_semantic_splitter_openai":
+            return RAGSemanticSplitterOpenAI(config)
         else:
             raise ValueError(f"Unknown example: {example}")
 
@@ -35,8 +38,9 @@ if __name__ == "__main__":
         "local",
         "openai",
         "agent_sqrroot",
-        "rag_with_openai_llm",
-        "token_splitter_rag_openai"
+        "rag_character_splitter_openai",
+        "rag_token_splitter_openai",
+        "rag_semantic_splitter_openai"
     ],
                         required=True)
     parser.add_argument("--input", type=str, required=True)
