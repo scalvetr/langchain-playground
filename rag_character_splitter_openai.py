@@ -35,7 +35,7 @@ class RAGCharacterSplitterOpenAI(Example):
             persist_directory=os.getcwd()
         )
         # configure the vector store as a retriever
-        self.retriever = vectorstore.as_retriever(
+        retriever = vectorstore.as_retriever(
             search_type="similarity",
             seach_kwargs={"k", 2}
         )
@@ -52,15 +52,15 @@ class RAGCharacterSplitterOpenAI(Example):
         Answer:
         """
 
-        self.prompt_template = ChatPromptTemplate.from_messages([("human", message)])
+        prompt_template = ChatPromptTemplate.from_messages([("human", message)])
 
         llm = ChatOpenAI(model="gpt-4o-mini", api_key=config["OPENAI"]["API_KEY"])
         self.rag_chain = (
-                {"retriever": self.retriever, "input": RunnablePassthrough()}
-                | self.prompt_template
+                {"retriever": retriever, "input": RunnablePassthrough()}
+                | prompt_template
                 | llm
                 | StrOutputParser()
         )
 
     def run(self, input: str) -> str:
-        return prompt_template.invoke({"input", input})
+        return self.rag_chain.invoke({"input", input})
