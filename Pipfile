@@ -19,6 +19,7 @@ langgraph = ">=0.6.7,<0.7"
 numexpr = ">=2.11.0,<2.12"
 tiktoken = ">=0.11.0,<0.12"
 unstructured = ">=0.18.14,<0.19"
+wikipedia = ">=1.4.0,<1.5"
 
 [dev-packages]
 

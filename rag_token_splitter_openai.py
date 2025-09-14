@@ -2,7 +2,6 @@ import configparser
 import os
 
 import tiktoken
-from langchain.chains.summarize.map_reduce_prompt import prompt_template
 from langchain_chroma import Chroma
 from langchain_community.chat_models import ChatOpenAI
 from langchain_community.document_loaders import UnstructuredHTMLLoader

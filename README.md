@@ -39,5 +39,7 @@ pipenv run python main.py --example rag_character_splitter_openai --input "Expla
 pipenv run python main.py --example rag_semantic_splitter_openai --input "Explain what AI is?"
 pipenv run python main.py --example rag_token_splitter_openai --input "Explain what AI is?"
 pipenv run python main.py --example rag_bm25_retrival_openai --input "Explain what AI is?"
+pipenv run python main.py --example rag_vector_db_openai --input "Explain what AI is?"
+
 
 ```
