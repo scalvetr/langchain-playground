@@ -2,7 +2,7 @@ import configparser
 
 from langchain_community.chat_models import ChatOpenAI
 from langchain_community.embeddings import OpenAIEmbeddings
-from langsmith import LangChainStringEvaluator
+from langsmith.evaluation import LangChainStringEvaluator
 from ragas.integrations.langchain import EvaluatorChain
 from ragas.metrics import context_precision, faithfulness
 

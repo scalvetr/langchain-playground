@@ -1,8 +1,11 @@
 import configparser
 
+from langchain_chroma import Chroma
 from langchain_community.chat_models import ChatOpenAI
+from langchain_community.document_loaders import UnstructuredHTMLLoader
 from langchain_community.embeddings import OpenAIEmbeddings
-from langsmith import LangChainStringEvaluator
+from langchain_experimental.text_splitter import SemanticChunker
+from langsmith.evaluation import LangChainStringEvaluator
 from ragas.integrations.langchain import EvaluatorChain
 from ragas.metrics import context_precision, faithfulness
 

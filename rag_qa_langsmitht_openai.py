@@ -2,7 +2,7 @@ import configparser
 
 from langchain_community.chat_models import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
-from langsmith import LangChainStringEvaluator
+from langsmith.evaluation import LangChainStringEvaluator
 
 from example import Example
 
