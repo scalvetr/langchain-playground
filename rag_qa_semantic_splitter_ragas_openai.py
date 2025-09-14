@@ -1,21 +1,17 @@
 import configparser
-import os
 
-from langchain.chains.summarize.map_reduce_prompt import prompt_template
-from langchain_chroma import Chroma
 from langchain_community.chat_models import ChatOpenAI
-from langchain_community.document_loaders import UnstructuredHTMLLoader
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.runnables import RunnablePassthrough
-from langchain_experimental.text_splitter import SemanticChunker
-from langchain_openai import OpenAIEmbeddings
+from langchain_community.embeddings import OpenAIEmbeddings
+from langsmith import LangChainStringEvaluator
+from ragas.integrations.langchain import EvaluatorChain
+from ragas.metrics import context_precision, faithfulness
 
 from example import Example
 
 
-class RAGSemanticSplitterOpenAI(Example):
+class RAGQASemanticSplitterRagasOpenAI(Example):
     def __init__(self, config: configparser.ConfigParser):
+        self.config = config
         loader = UnstructuredHTMLLoader("sample_document.html")
         data = loader.load()
 
@@ -36,7 +32,7 @@ class RAGSemanticSplitterOpenAI(Example):
             persist_directory=os.getcwd()
         )
         # configure the vector store as a retriever
-        retriever = vectorstore.as_retriever(
+        self.retriever = vectorstore.as_retriever(
             search_type="similarity",
             seach_kwargs={"k", 2}
         )
@@ -57,11 +53,25 @@ class RAGSemanticSplitterOpenAI(Example):
 
         llm = ChatOpenAI(model="gpt-4o-mini", api_key=config["OPENAI"]["API_KEY"])
         self.rag_chain = (
-                {"retriever": retriever, "input": RunnablePassthrough()}
+                {"retriever": self.retriever, "input": RunnablePassthrough()}
                 | prompt_template
                 | llm
                 | StrOutputParser()
         )
 
     def run(self, input: str) -> str:
-        return self.rag_chain.invoke(input)
+        llm = ChatOpenAI(temperature=0, model="gpt-4o-mini", api_key=self.config["OPENAI"]["API_KEY"])
+        embeddings = OpenAIEmbeddings(model="text-embedding-3-small", api_key=self.config["OPENAI"]["API_KEY"])
+        # Faithfulness
+        faithfulness_chain = EvaluatorChain(
+            metric=faithfulness,
+            llm=llm,
+            embeddings=embeddings
+        )
+        eval_result = faithfulness_chain({
+            "question": input,
+            "answer": self.rag_chain.invoke(input),
+            "contexts": self.retriever.invoke(input)
+        })
+        print(eval_result)
+        return eval_result['faithfulness']

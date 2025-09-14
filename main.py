@@ -10,6 +10,8 @@ from rag_character_splitter_openai import RAGCharacterSplitterOpenAI
 from rag_token_splitter_openai import RAGTokenSplitterOpenAI
 from rag_semantic_splitter_openai import RAGSemanticSplitterOpenAI
 from rag_qa_langsmitht_openai import RAGQALangsmithOpenAI
+from rag_qa_ragas_openai import RAGQARagasOpenAI
+from rag_qa_semantic_splitter_ragas_openai import RAGQASemanticSplitterRagasOpenAI
 
 class ExampleFactory:
     @staticmethod
@@ -32,6 +34,10 @@ class ExampleFactory:
             return RAGSemanticSplitterOpenAI(config)
         elif example == "rag_qa_langsmitht_openai":
             return RAGQALangsmithOpenAI(config)
+        elif example == "rag_qa_ragas_openai":
+            return RAGQARagasOpenAI(config)
+        elif example == "rag_qa_semantic_splitter_ragas_openai":
+            return RAGQASemanticSplitterRagasOpenAI(config)
         else:
             raise ValueError(f"Unknown example: {example}")
 
@@ -47,7 +53,9 @@ if __name__ == "__main__":
         "rag_token_splitter_openai",
         "rag_semantic_splitter_openai",
         "rag_bm25_retrival_openai",
-        "rag_qa_langsmitht_openai"
+        "rag_qa_langsmitht_openai",
+        "rag_qa_ragas_openai",
+        "rag_qa_semantic_splitter_ragas_openai"
     ],
                         required=True)
     parser.add_argument("--input", type=str, required=True)
