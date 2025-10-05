@@ -7,7 +7,6 @@ from langchain_core.prompts import PromptTemplate, FewShotPromptTemplate
 from langchain_experimental.graph_transformers import LLMGraphTransformer
 from langchain_openai import ChatOpenAI
 from langchain_text_splitters import TokenTextSplitter
-from onnxruntime.transformers.models.stable_diffusion.benchmark import example_prompts
 
 from example import Example
 

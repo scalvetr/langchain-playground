@@ -1,6 +1,7 @@
 import argparse
 import configparser
 
+from agent_rectangle_area import AgentRectangleArea
 from agent_sqrroot import AgentSqrRoot
 from example import Example
 from local_llm import LocalLLM
@@ -41,6 +42,8 @@ class ExampleFactory:
             return RAGQASemanticSplitterRagasOpenAI(config)
         elif example == "rag_vector_db_openai":
             return RAGVectorDBOpenAI(config)
+        elif example == "agent_rectangle_area":
+            return AgentRectangleArea(config)
         else:
             raise ValueError(f"Unknown example: {example}")
 
@@ -59,7 +62,8 @@ if __name__ == "__main__":
         "rag_qa_langsmitht_openai",
         "rag_qa_ragas_openai",
         "rag_qa_semantic_splitter_ragas_openai",
-        "rag_vector_db_openai"
+        "rag_vector_db_openai",
+        "agent_rectangle_area"
     ],
                         required=True)
     parser.add_argument("--input", type=str, required=True)

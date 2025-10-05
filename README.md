@@ -40,6 +40,7 @@ pipenv run python main.py --example rag_semantic_splitter_openai --input "Explai
 pipenv run python main.py --example rag_token_splitter_openai --input "Explain what AI is?"
 pipenv run python main.py --example rag_bm25_retrival_openai --input "Explain what AI is?"
 pipenv run python main.py --example rag_vector_db_openai --input "Explain what AI is?"
+pipenv run python main.py --example agent_rectangle_area --input "What is the area of a rectangle with sides 5 and 7?"
 
 
 ```
