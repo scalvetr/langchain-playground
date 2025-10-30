@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+langchain = ">=0.3.27,<0.4"
+langchain-openai = ">=0.3.33,<0.4"
+langchain-huggingface = ">=0.3.1,<0.4"
+torch = ">=2.9.0,<2.10"
+torchvision = ">=0.24.0,<0.25"
+
+[dev-packages]
+
+[requires]
+python_version = "3.13"

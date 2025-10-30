@@ -3,3 +3,5 @@
 /langchain-playground.iml
 /config.ini
 /chroma.sqlite3
+/agent_with_tools/config.ini
+/agent_with_tools/Pipfile.lock
