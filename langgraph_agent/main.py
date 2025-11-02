@@ -48,5 +48,14 @@ def stream_graph_updates(user_input: str):
         for value in event.values():
             print("Agent:", value["messages"])
 
-user_query = "Whi is Mary Shelley?"
+user_query = "Why is Mary Shelley?"
 stream_graph_updates(user_query)
+
+# Import modules for chatbot diagram
+from IPython.display import display, Image
+
+# Try generationg displaying the graph diagram
+try:
+    display(Image(graph.get_graph().draw_mermaid_png()))
+except Exception:
+    print("Additional dependencies required.")
