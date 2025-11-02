@@ -79,7 +79,6 @@ def stream_graph_updates(user_input: str):
         for value in event.values():
             print("Agent:", value["messages"])
 
-user_query = "Why is Mary Shelley?"
+user_query = "House of Lords"
 stream_graph_updates(user_query)
-
 
