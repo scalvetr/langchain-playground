@@ -4,9 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-typing = "*"
-typing_extensions = "*"
-langraph = "*"
+langgraph = "*"
 
 [dev-packages]
 

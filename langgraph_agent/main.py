@@ -11,8 +11,6 @@ from langgraph.graph.message import add_messages
 # Module for setting up OpenAI
 from langchain_openai import ChatOpenAI
 
-
-
 config = configparser.ConfigParser()
 config.read('config.ini')
 
@@ -49,3 +47,6 @@ def stream_graph_updates(user_input: str):
     for event in graph.stream({"messages": [("user", user_input)]}):
         for value in event.values():
             print("Agent:", value["messages"])
+
+user_query = "Whi is Mary Shelley?"
+stream_graph_updates(user_query)
